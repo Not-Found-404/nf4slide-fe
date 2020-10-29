@@ -1,6 +1,7 @@
 import React from "react";
 import './roster.css';
 import {RosterService} from "../../service/roster.service";
+import {Button} from 'antd';
 
 
 export class Roster extends React.Component {
@@ -128,7 +129,7 @@ export class Roster extends React.Component {
             <div className="roster-workplace">
 
                 {this.getRosterListView()}
-                <div onClick={() => this.flash()}>flash</div>
+                <Button  type="primary" className={"flash-begin"} onClick={() => this.flash()}>The Chosen One </Button>
             </div>
         )
     }
