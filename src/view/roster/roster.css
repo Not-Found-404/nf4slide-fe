@@ -4,7 +4,7 @@
 }
 
 .roster-hidden {
-    color: #ffffff;
+    /*color: #ffffff;*/
 }
 
 .roster-workplace {
@@ -16,7 +16,6 @@
 .flash-begin {
     width: 180px;
     height: 40px;
-    position: absolute;
     left: 50%;
     top: 50%;
     margin: 20px 0 0 -90px;
