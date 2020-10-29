@@ -1,0 +1,22 @@
+.roster-chose {
+    color: #1d2128;
+    background: #98e1ff;
+}
+
+.roster-hidden {
+    color: #ffffff;
+}
+
+.roster-workplace {
+    padding-top: 5%;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.roster-content {
+    width: 200px;
+    height: 100px;
+    padding: 15px;
+    margin: 0 auto;
+    text-align: center;
+}
