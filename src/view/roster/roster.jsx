@@ -1,8 +1,9 @@
 import React from "react";
 import './roster.css';
 import {RosterService} from "../../service/roster.service";
-import {Button} from 'antd';
+import {Button, Select} from 'antd';
 
+const {Option} = Select;
 
 export class Roster extends React.Component {
     rosterService = new RosterService();
@@ -10,16 +11,36 @@ export class Roster extends React.Component {
     state = {
         rosterInfo: [],
         flashTime: 0,
-        maxFlashTime: 20
+        maxFlashTime: 20,
+        groups: [],
+        checkedGroup: null
     };
 
     componentDidMount() {
-        this.rosterService.getRosterByGroup({
-            params: {groupId: "eecc293ffced7bfac730f61116bebff8"},
+        this.rosterService.queryGroup({
             success: (data) => {
-                this.initData(data);
+                this.setState({
+                    groups: data
+                });
+                if (data.length > 0) {
+                    this.setState({
+                        checkedGroup: data[0].groupId
+                    });
+                    this.queryRosterByGroup(data[0].groupId);
+                }
             }
-        })
+        });
+    }
+
+    queryRosterByGroup(checkedGroup) {
+        if (null != checkedGroup) {
+            this.rosterService.getRosterByGroup({
+                params: {groupId: checkedGroup},
+                success: (data) => {
+                    this.initData(data);
+                }
+            })
+        }
     }
 
 
@@ -123,14 +144,35 @@ export class Roster extends React.Component {
         return rosterInfoList;
     }
 
+    handleCategorySelect = (e) => {
+        this.setState({
+            checkedGroup: e === "" ? null : e
+        });
+        this.queryRosterByGroup(e);
+    };
+
+    getGroupOption() {
+        const categoryOption = [];
+        let groupsList = this.state.groups;
+        groupsList.forEach(group => {
+            categoryOption.push(<Option key={group.groupId} value={group.groupId}>{group.groupName}</Option>)
+        });
+        return categoryOption;
+    }
 
     render() {
         return (
             <div className="roster-workplace">
+                <Select className={"roster-group-select"} value={this.state.checkedGroup} onChange={this.handleCategorySelect}>
+                    {this.getGroupOption()}
+                </Select>
 
                 {this.getRosterListView()}
-                <Button  type="primary" className={"flash-begin"} onClick={() => this.flash()}>The Chosen One </Button>
+
+
+                <Button type="primary" className={"flash-begin"} onClick={() => this.flash()}>The Chosen One </Button>
             </div>
         )
     }
+
 }

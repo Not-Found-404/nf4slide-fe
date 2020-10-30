@@ -1,6 +1,6 @@
 .roster-chose {
-    color: #1d2128;
-    background: #98e1ff;
+    color: #280f10;
+    background: #c0f2ff;
 }
 
 .roster-hidden {
@@ -9,7 +9,7 @@
 
 .roster-workplace {
     padding-top: 5%;
-    width: 800px;
+    width: 1000px;
     margin: 0 auto;
 }
 
@@ -18,11 +18,21 @@
     height: 40px;
     left: 50%;
     top: 50%;
-    margin: 20px 0 0 -90px;
+    margin: 20px 10px 0 -90px;
+}
+
+.roster-group-select{
+    width: 180px;
+    height: 40px;
+    left: 50%;
+    top: 50%;
+    margin: 20px 0 20px -90px;
+    border-radius: 10px;
 }
 
 .roster-content {
-    width: 200px;
+    border-radius: 50px;
+    width: 100px;
     height: 100px;
     padding: 15px;
     margin: 0 auto;
